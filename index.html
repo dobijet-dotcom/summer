@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경기한국어랭귀지스쿨 제3섹터 정책 설문조사</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── 기본 변수 ── */
+:root {
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --surface2: #f8f9fb;
+  --border: #e2e6ef;
+  --border2: #c8cfdf;
+  --primary: #1a4fa0;
+  --primary-light: #e8eef8;
+  --primary-mid: #2d65c4;
+  --accent: #e84b4b;
+  --text: #1a1f2e;
+  --text2: #4a5268;
+  --text3: #8892a4;
+  --success: #1a7a4a;
+  --success-bg: #e8f5ee;
+  --section-colors: #1a4fa0, #2d65c4, #1a7a4a, #7a3a1a;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 12px rgba(26,79,160,0.08);
+  --shadow-lg: 0 8px 32px rgba(26,79,160,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── 상단 헤더 ── */
+.page-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 240px; height: 240px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 40%;
+  width: 320px; height: 320px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 24px 32px;
+  position: relative;
+  z-index: 1;
+}
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.header-inner h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.header-inner p {
+  font-size: 13px;
+  opacity: 0.78;
+  line-height: 1.6;
+}
+.progress-wrap {
+  background: rgba(255,255,255,0.15);
+  height: 4px;
+  margin-top: 24px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 11px;
+  opacity: 0.65;
+  margin-top: 6px;
+  text-align: right;
+}
+
+/* ── 본문 컨테이너 ── */
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ── 개인정보 동의 배너 ── */
+.consent-banner {
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.consent-banner strong { color: var(--primary); }
+
+/* ── 섹션 ── */
+.section {
+  margin-bottom: 28px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section-num {
+  width: 28px; height: 28px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+/* ── 카드 ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s;
+}
+.card:focus-within { border-color: var(--primary-mid); }
+
+/* ── 질문 레이블 ── */
+.q-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary-mid);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.q-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+.q-sub {
+  font-size: 12px;
+  color: var(--text3);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ── 그리드 레이아웃 ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.field-group { display: flex; flex-direction: column; gap: 5px; }
+.field-group label { font-size: 12px; color: var(--text3); font-weight: 500; }
+
+/* ── 입력 폼 요소 ── */
+input[type="text"], input[type="date"], select, textarea {
+  width: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13.5px;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+input[type="text"]:focus, input[type="date"]:focus,
+select:focus, textarea:focus {
+  border-color: var(--primary-mid);
+  box-shadow: 0 0 0 3px rgba(45,101,196,0.12);
+  background: #fff;
+}
+textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.65;
+}
+input[type="date"] { color-scheme: light; }
+
+/* ── 5점 척도 라디오 버튼 ── */
+.scale-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+@media (max-width: 480px) {
+  .scale-row { grid-template-columns: repeat(3, 1fr); }
+}
+.scale-btn {
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 8px 4px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface2);
+  transition: all 0.15s;
+  user-select: none;
+  line-height: 1.3;
+}
+.scale-btn:hover { border-color: var(--primary-mid); background: var(--primary-light); color: var(--primary); }
+.scale-btn.sel {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(26,79,160,0.25);
+}
+
+/* ── 일반 라디오 (2~4개) ── */
+.radio-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.radio-btn {
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface2);
+  transition: all 0.15s;
+  user-select: none;
+}
+.radio-btn:hover { border-color: var(--primary-mid); color: var(--primary); }
+.radio-btn.sel {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ── 체크박스 (복수 선택) ── */
+.check-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chk-btn {
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 5px 13px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface2);
+  transition: all 0.15s;
+  user-select: none;
+}
+.chk-btn:hover { border-color: var(--primary-mid); color: var(--primary); }
+.chk-btn.sel {
+  background: var(--primary-light);
+  border-color: var(--primary-mid);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ── 조건부 표시 ── */
+.cond { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.cond.show { display: block; }
+
+/* ── 구분선 ── */
+.divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+/* ── 제출 버튼 ── */
+.submit-area { margin-top: 32px; }
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(26,79,160,0.3);
+  letter-spacing: 0.02em;
+}
+.submit-btn:hover { background: var(--primary-mid); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,79,160,0.35); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+/* ── 알림 메시지 ── */
+.alert {
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 13.5px;
+  display: none;
+  line-height: 1.6;
+}
+.alert.success { background: var(--success-bg); border: 1px solid #a3d4bb; color: var(--success); }
+.alert.error { background: #fef0f0; border: 1px solid #f5b7b7; color: #8a2020; }
+
+/* ── URL 설정 안내 배너 ── */
+.url-warning {
+  background: #fffbe6;
+  border: 1px solid #f5d65b;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 12.5px;
+  color: #6b5300;
+  display: none;
+}
+.url-warning.show { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ── 상단 헤더 ── -->
+<div class="page-header">
+  <div class="header-inner">
+    <div class="badge">2026 경기도교육청 정책 현장 모니터링단</div>
+    <h1>경기한국어랭귀지스쿨 제3섹터 기반<br>다문화교육통합지원체계 구축 정책 설문조사</h1>
+    <p>본 설문은 통계법 제33·34조에 의해 익명으로 처리되며, 정책 모니터링 및 학술연구 자료로만 활용됩니다.</p>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="pbar"></div>
+    </div>
+    <div class="progress-label" id="plabel">응답 진행률 0%</div>
+  </div>
+</div>
+
+<!-- ── 본문 ── -->
+<div class="container">
+
+  <!-- Apps Script URL 미설정 경고 -->
+  <div class="url-warning" id="urlWarn">
+    ⚠️ <strong>설정 필요:</strong> 설문 제출 기능을 활성화하려면 HTML 파일 내 <code>APPS_SCRIPT_URL</code> 변수에 배포된 웹 앱 URL을 입력해야 합니다. (<a href="#setup-guide" style="color:#6b5300">설정 안내 참고</a>)
+  </div>
+
+  <!-- 개인정보 동의 -->
+  <div class="consent-banner">
+    상기 본인은 이 설문 내용이 <strong>2026 경기도교육청 정책 현장모니터링</strong> 및 정책·학술 연구의 참고 자료로 사용되는 데 동의합니다.
+  </div>
+
+  <form id="surveyForm" autocomplete="off">
+
+    <!-- ═══ 면담 기본 정보 ═══ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">0</div>
+        <div class="section-title">면담 기본 정보</div>
+      </div>
+
+      <div class="card">
+        <div class="grid-2">
+          <div class="field-group">
+            <label>면담 일자</label>
+            <input type="date" id="date">
+          </div>
+          <div class="field-group">
+            <label>면담 지역</label>
+            <input type="text" id="region" placeholder="예: 경기도 수원시">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-label">면담 대상</div>
+        <div class="radio-row" id="target">
+          <div class="radio-btn" data-v="초등">초등</div>
+          <div class="radio-btn" data-v="중등">중등</div>
+          <div class="radio-btn" data-v="특수">특수</div>
+          <div class="radio-btn" data-v="전문직">전문직</div>
+        </div>
+        <div class="divider"></div>
+        <div class="q-label">직급 구분</div>
+        <div class="radio-row" id="role">
+          <div class="radio-btn" data-v="일반">일반</div>
+          <div class="radio-btn" data-v="보직">보직</div>
+          <div class="radio-btn" data-v="관리자">관리자</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="grid-2">
+          <div class="field-group">
+            <label>소속 및 직위</label>
+            <input type="text" id="position" placeholder="예: ○○중학교 교사">
+          </div>
+          <div class="field-group">
+            <label>교육 경력</label>
+            <input type="text" id="career" placeholder="예: 15년">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="grid-3">
+          <div>
+            <div class="q-label" style="font-size:13px;margin-bottom:8px">다문화특별학급 여부</div>
+            <div class="radio-row" id="special_class">
+              <div class="radio-btn" data-v="있음">있음</div>
+              <div class="radio-btn" data-v="없음">없음</div>
+            </div>
+          </div>
+          <div>
+            <div class="q-label" style="font-size:13px;margin-bottom:8px">다문화 업무 경험</div>
+            <div class="radio-row" id="work_exp">
+              <div class="radio-btn" data-v="있음">있음</div>
+              <div class="radio-btn" data-v="없음">없음</div>
+            </div>
+          </div>
+          <div>
+            <div class="q-label" style="font-size:13px;margin-bottom:8px">관련 연수 경험</div>
+            <div class="radio-row" id="training_exp">
+              <div class="radio-btn" data-v="있음">있음</div>
+              <div class="radio-btn" data-v="없음">없음</div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div>
+            <div class="q-label" style="font-size:13px;margin-bottom:8px">면담 방식</div>
+            <div class="radio-row" id="interview_type">
+              <div class="radio-btn" data-v="개별">개별</div>
+              <div class="radio-btn" data-v="집단">집단</div>
+              <div class="radio-btn" data-v="서면">서면</div>
+              <div class="radio-btn" data-v="원격">원격</div>
+            </div>
+          </div>
+          <div>
+            <div class="q-label" style="font-size:13px;margin-bottom:8px">녹음 동의</div>
+            <div class="radio-row" id="recording">
+              <div class="radio-btn" data-v="동의">동의</div>
+              <div class="radio-btn" data-v="비동의">비동의</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 1부: 정책 인지도 ═══ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">정책 인지도</div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q1</div>
+        <div class="q-label">「경기한국어랭귀지스쿨 제3섹터 기반 다문화교육통합지원체계 구축」 정책을 들어본 적이 있거나, 관련 내용을 알고 계신가요?</div>
+        <div class="scale-row" id="q1_aware">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+        <div class="divider"></div>
+        <div class="q-label" style="font-size:13px">접한 경로 <span style="color:var(--text3);font-weight:400">(복수 선택 가능)</span></div>
+        <div class="check-row" id="q1_path">
+          <div class="chk-btn" data-v="공문">공문</div>
+          <div class="chk-btn" data-v="연수">연수</div>
+          <div class="chk-btn" data-v="동료교사 안내">동료교사 안내</div>
+          <div class="chk-btn" data-v="홍보물(카드뉴스·리플릿)">홍보물</div>
+          <div class="chk-btn" data-v="교육청 온라인 플랫폼">교육청 플랫폼</div>
+          <div class="chk-btn" data-v="보도자료">보도자료</div>
+          <div class="chk-btn" data-v="기타">기타</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q2</div>
+        <div class="q-label">이 정책의 목적과 필요성을 어떻게 이해하고 계신가요?</div>
+        <div class="q-sub">기존 다문화 교육 정책과의 관계, 공교육 정상화 연관성, 온라인 교육 접근성·효과성 등 종합 판단</div>
+        <div class="scale-row" id="q2_purpose">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q3</div>
+        <div class="q-label">이 정책에 해당하는 학생이 누군지 알고 있나요?</div>
+        <div class="scale-row" id="q3_know">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+        <!-- 조건부: 그렇다 이상 선택 시 표시 -->
+        <div class="cond" id="q3_1_cond">
+          <div class="q-num">Q3-1</div>
+          <div class="q-label">해당 학생에게 이 정책을 안내하셨나요?
+            <span style="color:var(--text3);font-size:12px;font-weight:400"> (Q3에서 '그렇다' 이상 응답자)</span>
+          </div>
+          <div class="scale-row" id="q3_1_guide">
+            <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+            <div class="scale-btn" data-v="그렇다">그렇다</div>
+            <div class="scale-btn" data-v="보통이다">보통이다</div>
+            <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+            <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q4</div>
+        <div class="q-label">경기한국어랭귀지스쿨에 대해 알고 있나요?</div>
+        <div class="scale-row" id="q4_kls">
+          <div class="scale-btn" data-v="잘 알고 있다">잘 알고<br>있다</div>
+          <div class="scale-btn" data-v="조금 안다">조금<br>안다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="모른다">모른다</div>
+          <div class="scale-btn" data-v="전혀 모른다">전혀<br>모른다</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2부: 정책 실행도 ═══ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">정책 실행도</div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q1</div>
+        <div class="q-label">경기한국어랭귀지스쿨 제3섹터 계정을 부여받은 학생들이 있나요?</div>
+        <div class="scale-row" id="q_exec1">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q2</div>
+        <div class="q-label">실제로 KLS 제3섹터 관련 자료를 활용해 보신 적이 있나요?</div>
+        <div class="q-sub">예: 이주 배경 학생과 함께하는 교실, 일반 과목 수업, 창의적 체험활동 등</div>
+        <div class="scale-row" id="q_exec2">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q3</div>
+        <div class="q-label">KLS 제3섹터 운영 지원이 실제 한국어를 모르는 이주 배경 학생에게 도움이 될 것이라 생각하나요?</div>
+        <div class="scale-row" id="q_exec3">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q4</div>
+        <div class="q-label">KLS 제3섹터의 도움을 가장 많이 받을 수 있는 학생의 한국어 구사 능력은 어느 정도라고 생각하나요?</div>
+        <div class="scale-row" id="q_exec4_level">
+          <div class="scale-btn" data-v="전혀 못함">전혀<br>못함</div>
+          <div class="scale-btn" data-v="기초 수준">기초<br>수준</div>
+          <div class="scale-btn" data-v="초급 수준">초급<br>수준</div>
+          <div class="scale-btn" data-v="중급 수준">중급<br>수준</div>
+          <div class="scale-btn" data-v="모든 수준">모든<br>수준</div>
+        </div>
+        <div style="margin-top:12px">
+          <div class="q-sub">그렇게 생각하는 이유를 서술해 주세요.</div>
+          <textarea id="q_exec4_reason" placeholder="자유롭게 작성해 주세요..."></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q5</div>
+        <div class="q-label">KLS 제3섹터가 다문화교육 통합지원체계를 구축하고 있다고 생각하시나요?</div>
+        <div class="q-sub">1·2·3섹터 형태로 지원하는 것이 진정한 통합인지, 아니면 장소만 달리하는 것인지 관점 포함</div>
+        <div class="scale-row" id="q_exec5">
+          <div class="scale-btn" data-v="매우 그렇다">매우<br>그렇다</div>
+          <div class="scale-btn" data-v="그렇다">그렇다</div>
+          <div class="scale-btn" data-v="보통이다">보통이다</div>
+          <div class="scale-btn" data-v="그렇지 않다">그렇지<br>않다</div>
+          <div class="scale-btn" data-v="전혀 아니다">전혀<br>아니다</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 3부: 정책 추진의 어려움 ═══ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">정책 추진의 어려움</div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q1</div>
+        <div class="q-label">이 정책을 학교 현장에서 이해하거나 실행하는 데 가장 어려운 점은 무엇인가요?</div>
+        <div class="q-sub">예: 용어 낯섦 / 이주 배경 학생 수 적음 / 해당 학생 전입 사례 없음 / 업무담당자 중심 운영 / 2섹터와의 연계 복잡 또는 홍보 미흡 등</div>
+        <textarea id="q_diff1" placeholder="자유롭게 작성해 주세요..."></textarea>
+      </div>
+    </div>
+
+    <!-- ═══ 4부: 필요한 지원 사항 ═══ -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">정책 추진에 필요한 지원 사항</div>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q1</div>
+        <div class="q-label">이 정책이 학교 현장에 안착되기 위해 가장 필요한 지원은 무엇인가요?</div>
+        <div class="q-sub">복수 선택 후 추가 의견도 자유롭게 작성해 주세요. (2026년 상반기 이후 보완점 중심)</div>
+        <div class="check-row" id="q_support_check" style="margin-bottom:12px">
+          <div class="chk-btn" data-v="운영 매뉴얼 제공">운영 매뉴얼 제공</div>
+          <div class="chk-btn" data-v="우수 사례 공유">우수 사례 공유</div>
+          <div class="chk-btn" data-v="인적 네트워크 활성화">인적 네트워크 활성화</div>
+          <div class="chk-btn" data-v="만족도 조사">만족도 조사</div>
+          <div class="chk-btn" data-v="심층 면접">심층 면접</div>
+          <div class="chk-btn" data-v="기타">기타</div>
+        </div>
+        <textarea id="q_support1" placeholder="추가 의견을 자유롭게 작성해 주세요..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="q-num">Q2</div>
+        <div class="q-label">KLS 제3섹터 기반 다문화교육 통합지원체계 정책 운영과 관련하여 교육청에 제안하고 싶은 의견이 있다면 자유롭게 작성해 주세요.</div>
+        <div class="q-sub">예: 교사용 디지털 원패스 접근 / 콘텐츠 다양화 / 원어민·이중언어 강사 지원 / 효과 확인 플랫폼·설문 등</div>
+        <textarea id="q_suggest" placeholder="자유롭게 작성해 주세요..." style="min-height:110px"></textarea>
+      </div>
+    </div>
+
+    <!-- ═══ 제출 ═══ -->
+    <div class="submit-area">
+      <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        설문 제출하기
+      </button>
+      <div class="alert success" id="alertSuccess">
+        ✅ 설문이 성공적으로 제출되었습니다. 바쁘신 중에 참여해 주셔서 감사합니다.
+      </div>
+      <div class="alert error" id="alertError">
+        ❌ 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.
+      </div>
+    </div>
+
+    <!-- 설정 안내 -->
+    <div id="setup-guide" style="margin-top:40px;padding:20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);font-size:12.5px;color:var(--text2);line-height:1.8">
+      <strong style="color:var(--primary);display:block;margin-bottom:8px">📋 Google Apps Script 연동 설정 방법</strong>
+      1. 구글 시트(경기한국어랭귀지스쿨 제3섹터 정책 설문 응답) 열기<br>
+      2. 확장 프로그램 → Apps Script → <code>Code.gs</code> 코드 붙여넣기 후 저장<br>
+      3. [배포] → [새 배포] → 유형: 웹 앱 → 액세스: 모든 사용자 → 배포<br>
+      4. 생성된 <strong>웹 앱 URL</strong> 복사<br>
+      5. 이 HTML 파일 하단 스크립트의 <code>APPS_SCRIPT_URL</code>에 붙여넣기<br>
+      6. 저장 후 설문 배포
+    </div>
+
+  </form>
+</div>
+
+<script>
+// ============================================================
+// ⚙️  여기에 배포된 Apps Script 웹 앱 URL을 입력하세요
+// ============================================================
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUZI5plmd61wESWuWBp6LruxE3LNlpi9HzuBmfpPW7UTT5xBXz41o6eadu4zh5vU0t/exec';
+// ============================================================
+
+// URL 미설정 경고 표시
+if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === '여기에_웹앱_URL_입력') {
+  document.getElementById('urlWarn').classList.add('show');
+}
+
+// ── 라디오 초기화 ──
+function initRadio(id) {
+  document.querySelectorAll(`#${id} .scale-btn, #${id} .radio-btn`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll(`#${id} .scale-btn, #${id} .radio-btn`).forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      // Q3 조건부 로직
+      if (id === 'q3_know') {
+        const v = btn.dataset.v;
+        const show = v === '매우 그렇다' || v === '그렇다';
+        document.getElementById('q3_1_cond').classList.toggle('show', show);
+      }
+      updateProgress();
+    });
+  });
+}
+
+// ── 체크박스 초기화 ──
+function initCheck(id) {
+  document.querySelectorAll(`#${id} .chk-btn`).forEach(btn => {
+    btn.addEventListener('click', () => btn.classList.toggle('sel'));
+  });
+}
+
+// ── 값 가져오기 ──
+function getRadio(id) {
+  const el = document.querySelector(`#${id} .sel`);
+  return el ? el.dataset.v : '';
+}
+function getCheck(id) {
+  return Array.from(document.querySelectorAll(`#${id} .chk-btn.sel`)).map(b => b.dataset.v).join(', ');
+}
+function getVal(id) {
+  return document.getElementById(id)?.value?.trim() || '';
+}
+
+// ── 진행률 업데이트 ──
+const REQUIRED = ['q1_aware','q2_purpose','q3_know','q4_kls','q_exec1','q_exec2','q_exec3','q_exec4_level','q_exec5'];
+function updateProgress() {
+  const filled = REQUIRED.filter(f => getRadio(f)).length;
+  const pct = Math.round((filled / REQUIRED.length) * 100);
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('plabel').textContent = `응답 진행률 ${pct}%`;
+}
+
+// ── 제출 처리 ──
+async function handleSubmit() {
+  const btn = document.getElementById('submitBtn');
+
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === '여기에_웹앱_URL_입력') {
+    document.getElementById('alertError').textContent = '❌ Apps Script URL이 설정되지 않았습니다. HTML 파일의 APPS_SCRIPT_URL을 입력하세요.';
+    document.getElementById('alertError').style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '제출 중...';
+  document.getElementById('alertSuccess').style.display = 'none';
+  document.getElementById('alertError').style.display = 'none';
+
+  const payload = {
+    date: getVal('date'),
+    region: getVal('region'),
+    target: getRadio('target'),
+    role: getRadio('role'),
+    position: getVal('position'),
+    career: getVal('career'),
+    special_class: getRadio('special_class'),
+    work_exp: getRadio('work_exp'),
+    training_exp: getRadio('training_exp'),
+    interview_type: getRadio('interview_type'),
+    recording: getRadio('recording'),
+    q1_aware: getRadio('q1_aware'),
+    q1_path: getCheck('q1_path'),
+    q2_purpose: getRadio('q2_purpose'),
+    q3_know: getRadio('q3_know'),
+    q3_1_guide: getRadio('q3_1_guide'),
+    q4_kls: getRadio('q4_kls'),
+    q_exec1: getRadio('q_exec1'),
+    q_exec2: getRadio('q_exec2'),
+    q_exec3: getRadio('q_exec3'),
+    q_exec4_level: getRadio('q_exec4_level'),
+    q_exec4_reason: getVal('q_exec4_reason'),
+    q_exec5: getRadio('q_exec5'),
+    q_diff1: getVal('q_diff1'),
+    q_support_check: getCheck('q_support_check'),
+    q_support1: getVal('q_support1'),
+    q_suggest: getVal('q_suggest')
+  };
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.result === 'success') {
+      document.getElementById('alertSuccess').style.display = 'block';
+      btn.textContent = '✓ 제출 완료';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    } else {
+      throw new Error(data.message || '오류');
+    }
+  } catch (err) {
+    document.getElementById('alertError').textContent = '❌ 제출 중 오류가 발생했습니다: ' + err.message;
+    document.getElementById('alertError').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = '설문 제출하기';
+  }
+}
+
+// ── 초기화 ──
+['target','role','special_class','work_exp','training_exp','interview_type','recording',
+ 'q1_aware','q2_purpose','q3_know','q3_1_guide','q4_kls',
+ 'q_exec1','q_exec2','q_exec3','q_exec4_level','q_exec5'].forEach(initRadio);
+['q1_path','q_support_check'].forEach(initCheck);
+</script>
+</body>
+</html>
